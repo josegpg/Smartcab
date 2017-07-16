@@ -13045,7 +13045,7 @@ R3BKIF58AAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>The driving agent is making bad decisions almost half of the times which makes sense since the agent is behaving randomly. Almost 20% of the bad actions cause accidents (minor or major)</li>
+<li>The driving agent is making bad decisions almost 35% of the times which makes sense since the agent is behaving randomly. Almost 5% of the times the agents commits an accident (minor or major)</li>
 <li>The rate of reliability makes sense, it's really low, almost 10% and I am impressed that it wasn't less. The agent is acting randomly which means that nothing is ruling its behavior thus making it unreliable for any goal.</li>
 <li>The agent is receiving in average around -5 reward for its actions, this means that the agent has been penalized a lot during the trials. In order to have a negative average, the agent has to be penalized mostly of the time.</li>
 <li>The outcome of the results remains practically the same accross the trials. This is, again, because there is no intention to learn.</li>
@@ -13151,12 +13151,12 @@ R3BKIF58AAAAAElFTkSuQmCC
 <p><strong>Answer:</strong></p>
 <p>The size of the state space would be: Waypoints <em> Left </em> Light * Oncoming</p>
 <ul>
-<li>Different number of waypoints: 4</li>
+<li>Different number of waypoints: 3 (Forward, left and right. None is not an option since this only happens when the agent reach the Goal)</li>
 <li>Oncoming: 4 possible values (None, Forward, Left, Right)</li>
 <li>Left: 4 possibilities (Same as oncoming)</li>
 <li>Light: 2 possible values</li>
 </ul>
-<p>the size of the state space is therefore: 4 * 4 * 4 * 2 = 128</p>
+<p>the size of the state space is therefore: 3 * 4 * 4 * 2 = 96</p>
 <p>There aren't much possible states, so I think that the agent could learn a policy for each possible state within a reasonable number of training trials.</p>
 
 </div>
@@ -14442,7 +14442,7 @@ ZlZBTrLMzMzMzMwqyEmWmZmZmZlZBf1/q4/SgvPqbgkAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The basic driving agent and the default Q-Learning got F on safety. They have got the same score regarding safety and reliability. However the default Q-Learning agent seems to start learning as the train trials advance, the relative frequency of bad actions started to decrease, also the reliability and the average reward per action started to rise. Maybe with more training the agent would be able to improve even more.</p>
+<p>The basic driving agent and the default Q-Learning got F on safety. They have got the same score regarding reliability. However the default Q-Learning agent seems to start learning as the train trials advance, the relative frequency of bad actions started to decrease, also the reliability and the average reward per action started to rise. Maybe with more training the agent would be able to improve even more.</p>
 <p>The number of training trials before testing is 20. This makes sense since only after 20 iterations the epsilon will go under 0.05 (actually becomes zero). This happens as a consequence of the linear decaying factor.</p>
 <p>Yes, the decaying function is represented as a line.</p>
 <p>As the number of trials increased, as I said before, the number of bad actions seem to decrease. In the other hand the average reward increase also a bit.</p>
@@ -16136,7 +16136,8 @@ $$\epsilon = \cos(0.02 * t)$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>I'm not sure about the characteristics however I think that in this case the smartcab isn't given any reward for reaching the goal. The problem is more related to the fact that the smartcab should behave correctly while following directions and this is key and is the reason why the agent can use learned policies from previous trials to address future problems. Giving positive rewards for getting closed to a specific destination could cause the agent to try to go to the same destination every time, ignoring the new destination of the new trial.</p>
+<p>I'm not sure about the characteristics however I think that in this case the smartcab isn't given any reward for reaching the goal. The problem is more related to the fact that the smartcab should behave correctly while following directions and this is key and is the reason why the agent can use learned policies from previous trials to address future problems. Giving positive rewards for getting close to a specific destination could cause the agent to try to go to the same destination every time, ignoring the new destination of the new trial.</p>
+<p>Since the destination changes over trials, giving future rewards for hitting it could confuse the agent when learning the optimal policy in the general case. In the other hand, in order to have future rewards from the reached state the agent should be aware of all the evironment including all the other agents and traffic lights and all of this is information that the smartcab doesn't have beforehand.</p>
 
 </div>
 </div>
